@@ -5,9 +5,6 @@ import { CartIcon } from './cart-icon'
 import { styled } from "styled-components"
 
 const CartCount = styled.span`
-    width: 17px;
-    height: 17px;
-    // text-align: center;
     padding: 2px 6px;
     border-radius: 100%;
     font-size: 12px;
