@@ -9,9 +9,9 @@ export default function Home() {
   const client = new QueryClient();
   return (
     <QueryClientProvider client={client}>
-      <main className={s.main}>
-      <FilterBar/>
-      <ProductList/>
+      <main>
+        <FilterBar/>
+        <ProductList/>
       </main>
     </QueryClientProvider>
     

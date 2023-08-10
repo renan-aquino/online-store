@@ -2,8 +2,15 @@
   --max-width: 1100px;
   --border-radius: 12px;
 
+  --clr-background: #F0F0F5;
   --clr-accent: #EF5600;
+
   --clr-dark: #737380;
+
+  --clr-dark-100: #617480;
+  --clr-dark-200: #737380;
+  --clr-dark-300: #41414D;
+  --clr-dark-400: #09090a;
 }
 
 * {
@@ -19,6 +26,13 @@ body {
   color: var(--clr-dark);
   line-height: 22px;
 }
+
+main {
+  padding: 34px 160px;
+  min-height: 100vh;
+  background-color: var(--clr-background);
+}
+
 
 a {
   color: inherit;
