@@ -5,6 +5,7 @@ import { useFilter } from "./useFilter";
 import { getCategory } from "@/app/utils/get-category";
 import { PriorityType } from "@/types/priority-types";
 import { FilterType } from "@/types/filter-types";
+import { useDeferredValue } from 'react'
 
 const API_URL = 'https://jsontest.vercel.app/'
 
@@ -14,11 +15,12 @@ const fetcher = (): AxiosPromise<ProductsFetchResponse> => {
 }
 
 export function useProducts(){
-    const { type, priority } = useFilter()
+    const { type, priority, search } = useFilter()
+    const searchDeferred = useDeferredValue(search)
 
     const { data } = useQuery({
         queryFn: fetcher,
-        queryKey: ['products-data']
+        queryKey: ['products-data', type, priority]
     })
 
     let filteredData = data?.data?.products
@@ -42,12 +44,10 @@ export function useProducts(){
       filteredData = filteredData?.filter(product => product.category == getCategory(type));
     }
 
+    filteredData = filteredData?.filter(product => product.title.toLowerCase().includes(searchDeferred.toLowerCase()));
+
 
     return {
         data: filteredData
     }
-
-    // return {
-    //     data: data?.data?.products
-    // }
 }

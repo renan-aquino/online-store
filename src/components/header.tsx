@@ -3,6 +3,7 @@
 import { styled } from "styled-components"
 import { InputSearchIcon } from "./search-input"
 import { CartControl } from "./cart-control"
+import { useFilter } from "@/hooks/useFilter"
 
 const TagHeader = styled.header`
     display: flex;
@@ -30,12 +31,16 @@ const Logo = styled.a `
 `
 
 export function Header(){ 
+    const { search, setSearch } = useFilter();
     return(
         <header>
             <TagHeader>
                 <Logo>Online<span> Store</span></Logo>
                 <div>
-                    <InputSearchIcon placeholder="O que você precisa?"/>
+                    <InputSearchIcon 
+                        value={search}
+                        handleChange={setSearch}
+                        placeholder="O que você precisa?"/>
                     <CartControl/>
                 </div>
             </TagHeader>
