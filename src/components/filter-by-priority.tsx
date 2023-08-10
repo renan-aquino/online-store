@@ -70,7 +70,7 @@ export function FilterByPriority(){
 
             {isOpen && 
                 <PriorityFilter>
-                    <li onClick={() => handleUpdatePriority(PriorityType.NEWEST)}>New</li>
+                    <li onClick={() => handleUpdatePriority(PriorityType.RELEASE_DATE)}>Release date</li>
                     <li onClick={() => handleUpdatePriority(PriorityType.LOWEST_PRICE)}>Lowest price</li>
                     <li onClick={() => handleUpdatePriority(PriorityType.HIGHEST_PRICE)}>Highest price</li>
                 </PriorityFilter>

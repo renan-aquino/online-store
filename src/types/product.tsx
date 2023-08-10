@@ -4,5 +4,6 @@ export interface Product {
     title: string,
     description: string,
     price_in_cents: number,
-    image: string
+    image: string,
+    date: string
 }

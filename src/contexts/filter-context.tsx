@@ -7,7 +7,7 @@ import { ReactNode, createContext, useState } from 'react'
 export const FilterContext = createContext({
     search: '',
     type: FilterType.ALL,
-    priority: PriorityType.NEWEST,
+    priority: PriorityType.RELEASE_DATE,
     
     setSearch: (value: string) => {},
     setType: (value: FilterType) => {},
@@ -22,7 +22,7 @@ interface ProviderProps {
 export function FilterContextProvider({ children } : ProviderProps){
     const [search, setSearch] = useState('')
     const [type, setType] = useState(FilterType.ALL)
-    const [priority, setPriority] = useState(PriorityType.NEWEST)
+    const [priority, setPriority] = useState(PriorityType.RELEASE_DATE)
 
     return(
         <FilterContext.Provider value={{search, type, priority, setSearch, setType, setPriority}}>

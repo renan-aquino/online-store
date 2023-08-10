@@ -21,7 +21,7 @@ const FilterItem = styled.li<FilterItemProps>`
     line-height: 22px;
     text-align: center;
     text-transform: uppercase;
-    color: var(--clr-dark)
+    color: var(--clr-dark);
     cursor: pointer;
 
     border-bottom: ${props => props.selected ? '4px solid var(--clr-accent)' : 'none'};
