@@ -7,3 +7,7 @@ export interface Product {
     image: string,
     date: string
 }
+
+export interface ProductFetchResponse {
+    product: Product
+}
