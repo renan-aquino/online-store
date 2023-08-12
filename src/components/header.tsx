@@ -35,7 +35,7 @@ export function Header(){
     return(
         <header>
             <TagHeader>
-                <Logo>Online<span> Store</span></Logo>
+                <Logo href="http://localhost:3000/">Online<span> Store</span></Logo>
                 <div>
                     <InputSearchIcon 
                         value={search}
