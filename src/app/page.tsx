@@ -1,19 +1,15 @@
 'use client'
 
-import { ProductList } from '@/components/product-list'
-import { FilterBar } from '@/components/filter-bar'
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ProductList } from '@/components/product-list/product-list'
+import { FilterBar } from '@/components/filter-bar/filter-bar'
 
 
 export default function Home() {
-  const client = new QueryClient();
 
   return (
-      <QueryClientProvider client={client}>
         <main>
           <FilterBar/>
           <ProductList/>
         </main>
-      </QueryClientProvider>
   )
 }

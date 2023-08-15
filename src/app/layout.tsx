@@ -1,8 +1,9 @@
-import { Header } from '@/components/header'
+import { Header } from '@/components/Header/header'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { FilterContextProvider } from '@/contexts/filter-context'
+import { DefaultProviders } from '@/components/default-providers'
 
 const inter = Inter({ 
   weight: ['300', '400', '500', '600'],
@@ -22,10 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <FilterContextProvider>
+        <DefaultProviders>
           <Header/>
           {children}
-        </FilterContextProvider>
+        </DefaultProviders>
 
         </body>
     </html>

@@ -1,9 +1,14 @@
 'use client'
 
-import { GoBackButton } from "@/components/go-back-button"
+import { GoBackButton } from "@/components/go-back-button/go-back-button"
 import { GoBackIcon } from "@/components/icons/go-back-icon"
+import { CartContext } from "@/contexts/cart-context"
+import { useCart } from "@/hooks/useCart"
 import { useProduct } from "@/hooks/useProduct"
+import { ProductInCart } from "@/types/product"
+import { useContext } from "react"
 import { styled } from "styled-components"
+
 
 const Container = styled.div`
     display: flex;
@@ -100,31 +105,28 @@ const ProductInfo = styled.div`
 `
 
 export default function Product({ searchParams }: { searchParams: { id: string }}){
-
+    const { cartItems, setCartItems } = useContext(CartContext)
     const { data } = useProduct(searchParams.id)
-    console.log(data)
+
 
     const handleAddToCart = () => {
-        let cartItems = localStorage.getItem('cart-items');
-        if(cartItems) {
-            let cartItemsArray = JSON.parse(cartItems);
 
-            let existingProductIndex = cartItemsArray.findIndex((item: { id: string; }) => item.id === searchParams.id);
+            let existingProductIndex = cartItems.findIndex((item: { id: string; }) => item.id === searchParams.id);
 
             if(existingProductIndex != -1){
-                cartItemsArray[existingProductIndex].quantity += 1;
-            } else {
-                cartItemsArray.push({ ...data, quantity: 1, id: searchParams.id })
-            }
+                cartItems[existingProductIndex].quantity += 1;
+                localStorage.setItem('cart-items', JSON.stringify(cartItems))
+                setCartItems(JSON.parse(localStorage.getItem('cart-items')))
 
-            localStorage.setItem('cart-items', JSON.stringify(cartItemsArray));
-        } else {
-            const newCart = [{ ...data, quantity: 1, id: searchParams.id }]
-            localStorage.setItem('cart-items', JSON.stringify(newCart));
-        }
+            } else {
+                let currentProduct = { ...data, quantity: 1}
+                setCartItems(prev => [...prev, currentProduct])
+            }
+    
     }
 
     return(
+
             <main>
                 <Container>
                     <GoBackButton navigate="/"/>
@@ -146,6 +148,7 @@ export default function Product({ searchParams }: { searchParams: { id: string }
                     </section>
                 </Container>
             </main>
+
 
     )
 }

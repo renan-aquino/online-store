@@ -8,6 +8,10 @@ export interface Product {
     date: string
 }
 
+export interface ProductInCart extends Product {
+    quantity: number
+}
+
 export interface ProductFetchResponse {
     product: Product
 }
