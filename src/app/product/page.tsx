@@ -1,11 +1,8 @@
 'use client'
 
 import { GoBackButton } from "@/components/go-back-button/go-back-button"
-import { GoBackIcon } from "@/components/icons/go-back-icon"
 import { CartContext } from "@/contexts/cart-context"
-import { useCart } from "@/hooks/useCart"
 import { useProduct } from "@/hooks/useProduct"
-import { ProductInCart } from "@/types/product"
 import { useContext } from "react"
 import { styled } from "styled-components"
 
