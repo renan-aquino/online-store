@@ -14,8 +14,8 @@ export function Header(){
                 <a href="/">Online<span className={s.accent}> Store</span></a>
                 <div>
                     <InputSearchIcon 
-                        // value={search}
-                        // handlechange={setSearch}
+                        value={search}
+                        $handleChange={setSearch}
                         placeholder="O que você precisa?"/>
                     <CartControl/>
                 </div>
