@@ -1,6 +1,6 @@
 'use client'
 
-import { ProductList } from '@/components/product-list/product-list'
+import { ProductList } from '@/components/product-list'
 import { FilterBar } from '@/components/filter-bar'
 
 

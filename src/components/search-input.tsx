@@ -1,6 +1,6 @@
 import { styled } from "styled-components"
 import { InputHTMLAttributes } from "react"
-import { SearchIcon } from "../icons/search-icon"
+import { SearchIcon } from "./icons/search-icon"
 
 const SearchInput = styled.input `
     border-radius: 8px;
