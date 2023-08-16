@@ -5,51 +5,21 @@ import { CartContext } from "@/contexts/cart-context"
 import { useProduct } from "@/hooks/useProduct"
 import { useContext } from "react"
 import { styled } from "styled-components"
+import Image from 'next/image'
+import { formatPrice } from "../utils/format-price"
 
 
 const Container = styled.div`
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 32px;
+    margin-top: 24px;
+    width: 100%;
+`
 
-    section {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        gap: 32px;
-        margin-top: 24px;
-
-        img {
-            max-width: 640px;
-            width: 50%;
-        }
-        
-        > div {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-
-            button {
-                background: #115D8C;
-                mix-blend-mode: multiply;
-                border-radius: 4px;
-                color: white;
-                border: none;
-                cursor: pointer;
-                padding: 10px 0;
-                text-align: center;
-                font-weight: 500;
-                font-size: 16px;
-                text-transform: uppercase;
-
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 8px;
-            }
-        }
-    }
+const ProductImage = styled(Image)`
+    width: 100%;
+    height: auto;
 `
 const ProductInfo = styled.div`
     display: flex;
@@ -96,14 +66,28 @@ const ProductInfo = styled.div`
         }
 
         p {
-            font-size: 14px;
+            margin-top: 20px;
+            font-size: 16px;
         }
+    }
+
+    button {
+        margin-top: 32px;
+        background: #115D8C;
+        border-radius: 4px;
+        color: white;
+        padding: 10px 10px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        text-transform: uppercase;
     }
 `
 
 export default function Product({ searchParams }: { searchParams: { id: string }}){
     const { cartItems, setCartItems } = useContext(CartContext)
     const { data } = useProduct(searchParams.id)
+    const price = formatPrice(data?.price_in_cents)
 
 
     const handleAddToCart = () => {
@@ -123,28 +107,24 @@ export default function Product({ searchParams }: { searchParams: { id: string }
     }
 
     return(
-
-            <main>
-                <Container>
-                    <GoBackButton navigate="/"/>
-                    <section>
-                        <img src={data?.image} alt="" />
-                        <div>
-                            <ProductInfo>
-                                <span>{data?.category}</span>
-                                <h2>{data?.title}</h2>
-                                <span>{data?.price_in_cents}</span>
-                                <div>
-                                    <h3>Descrição</h3>
-                                    <p>{data?.description}</p>
-                                </div>
-                            </ProductInfo>
-                        </div>
-                        <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
-                        
-                    </section>
-                </Container>
-            </main>
+        <main>
+            <GoBackButton navigate="/"/>
+            <Container>
+                    <ProductImage src={data?.image} alt="" width={500} height={500}/>
+                    <div>
+                        <ProductInfo>
+                            <span>{data?.category}</span>
+                            <h2>{data?.title}</h2>
+                            <span>{price}</span>
+                            <div>
+                                <h3>Descrição</h3>
+                                <p>{data?.description}</p>
+                            </div>
+                            <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
+                        </ProductInfo>
+                    </div>
+            </Container>
+        </main>
 
 
     )

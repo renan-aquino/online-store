@@ -7,6 +7,10 @@ import { styled } from "styled-components"
 
 const HeaderTag = styled.header `
     height: 80px;
+    width: 100%;
+    position: fixed;
+    background: white;
+    z-index: 2;
 `
 const Container = styled.div `
     padding: 0px 15px;

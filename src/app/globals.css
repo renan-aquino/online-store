@@ -28,11 +28,11 @@ body {
 }
 
 main {
-  padding: 34px 160px;
-  min-height: 100vh;
+  margin-top: 80px;
+  padding: 34px 15px;
+  min-height: 100vh - 80px;
   background-color: var(--clr-background);
 }
-
 
 a {
   color: inherit;

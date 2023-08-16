@@ -39,6 +39,7 @@ const PriorityFilter = styled.div `
 
     position: absolute;
     top: 100%;
+    z-index: 1;
 
     li {
         font-size: 14px;
