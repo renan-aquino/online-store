@@ -5,9 +5,8 @@ import { CartContext } from "@/contexts/cart-context"
 import { useProduct } from "@/hooks/useProduct"
 import { useContext } from "react"
 import { styled } from "styled-components"
-import Image from 'next/image'
+// import Image from 'next/image'
 import { formatPrice } from "../utils/format-price"
-import { useProducts } from "@/hooks/useProducts"
 
 
 const Container = styled.div`
@@ -16,12 +15,18 @@ const Container = styled.div`
     gap: 32px;
     margin-top: 24px;
     width: 100%;
+    
+    img {
+        width: 100%;
+        height: auto;
+    }
 `
 
-const ProductImage = styled(Image)`
-    width: 100%;
-    height: auto;
-`
+// const ProductImage = styled(Image)`
+//     width: 100%;
+//     height: auto;
+// `
+
 const ProductInfo = styled.div`
     display: flex;
     align-items: flex-start;
@@ -87,19 +92,8 @@ const ProductInfo = styled.div`
 
 export default function Product({ searchParams }: { searchParams: { id: string }}){
     const { cartItems, setCartItems } = useContext(CartContext)
-    // const { data } = useProduct(searchParams.id)
-
-    const { data } = useProducts()
-
-    let filteredData = data
-
-    filteredData = filteredData?.filter(product => product.id == searchParams.id)
-
-    let filteredDataItem = filteredData?.filter(product => product.id == searchParams.id).at(0)
-
-    const price = formatPrice(filteredDataItem?.price_in_cents)
-
-    // const price = formatPrice(data?.price_in_cents)
+    const { data } = useProduct(searchParams.id)
+    const price = formatPrice(data?.price_in_cents)
 
 
     const handleAddToCart = () => {
@@ -112,7 +106,7 @@ export default function Product({ searchParams }: { searchParams: { id: string }
                 setCartItems(JSON.parse(localStorage.getItem('cart-items')))
 
             } else {
-                let currentProduct = { ...filteredDataItem, quantity: 1}
+                let currentProduct = { ...data, quantity: 1}
                 setCartItems(prev => [...prev, currentProduct])
             }
     
@@ -122,15 +116,16 @@ export default function Product({ searchParams }: { searchParams: { id: string }
         <main>
             <GoBackButton navigate="/"/>
             <Container>
-                    <ProductImage src={filteredDataItem?.image} alt="" width={500} height={500}/>
+                    
+                    <img src={data?.image}/>
                     <div>
                         <ProductInfo>
-                            <span>{filteredDataItem?.category}</span>
-                            <h2>{filteredDataItem?.title}</h2>
+                            <span>{data?.category}</span>
+                            <h2>{data?.title}</h2>
                             <span>{price}</span>
                             <div>
                                 <h3>Descrição</h3>
-                                <p>{filteredDataItem?.description}</p>
+                                <p>{data?.description}</p>
                             </div>
                             <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
                         </ProductInfo>

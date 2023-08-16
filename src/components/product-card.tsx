@@ -3,7 +3,7 @@
 import { formatPrice } from "@/app/utils/format-price"
 import { useRouter } from "next/navigation"
 import { styled } from "styled-components"
-import Image from 'next/image'
+// import Image from 'next/image'
 
 interface ProductCardProps{
     id: string,
@@ -27,6 +27,13 @@ const Card = styled.div`
 
     width: 100%;
     height: auto;
+
+    img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
 
     div {
         display: flex;
@@ -60,13 +67,12 @@ const Card = styled.div`
 
 `
 
-const ProductImage = styled(Image) `
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1;
-    object-fit: cover;
-`
-
+// const ProductImage = styled(Image) `
+//     width: 100%;
+//     height: auto;
+//     aspect-ratio: 1;
+//     object-fit: cover;
+// `
 
 export function ProductCard(props: ProductCardProps){
 
@@ -79,7 +85,7 @@ export function ProductCard(props: ProductCardProps){
     
     return(
         <Card onClick={handleNavigate}>
-            <ProductImage src={props.image} alt='' width={500} height={500} priority={true}/>
+            <img src={props.image}/>
             <div>
                 <h3>{props.title}</h3>
                 <p>{price}</p>
