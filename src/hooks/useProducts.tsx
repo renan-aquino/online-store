@@ -20,7 +20,8 @@ export function useProducts(){
 
     const { data } = useQuery({
         queryFn: fetcher,
-        queryKey: ['products-data', type, priority]
+        queryKey: ['products-data', type, priority],
+        staleTime: 1000 * 60 * 1
     })
 
     let filteredData = data?.data?.products
