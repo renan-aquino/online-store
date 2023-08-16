@@ -1,7 +1,7 @@
 'use client'
 
 import { ProductList } from '@/components/product-list/product-list'
-import { FilterBar } from '@/components/filter-bar/filter-bar'
+import { FilterBar } from '@/components/filter-bar'
 
 
 export default function Home() {

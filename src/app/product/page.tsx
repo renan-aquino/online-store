@@ -1,6 +1,6 @@
 'use client'
 
-import { GoBackButton } from "@/components/go-back-button/go-back-button"
+import { GoBackButton } from "@/components/go-back-button"
 import { CartContext } from "@/contexts/cart-context"
 import { useProduct } from "@/hooks/useProduct"
 import { useContext } from "react"

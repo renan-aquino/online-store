@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { DownArrowIcon } from "../icons/down-arrow-icon"
+import { DownArrowIcon } from "./icons/down-arrow-icon"
 import { useState } from "react"
 import { useFilter } from "@/hooks/useFilter"
 import { PriorityType } from "@/types/priority-types"

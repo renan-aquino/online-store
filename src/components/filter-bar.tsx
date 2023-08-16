@@ -1,8 +1,8 @@
 'use client'
 
 import { styled } from "styled-components";
-import { FilterByType } from "../filter-by-type/filter-by-type";
-import { FilterByPriority } from "../filter-by-priority/filter-by-priority";
+import { FilterByType } from "./filter-by-type";
+import { FilterByPriority } from "./filter-by-priority";
 
 const FilterBarContainer = styled.div `
     display: flex;

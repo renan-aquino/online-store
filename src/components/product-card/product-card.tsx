@@ -18,7 +18,6 @@ export function ProductCard(props: ProductCardProps){
 
     const handleNavigate = () => {
         router.push("/product?id=" + props.id)
-        console.log("hi");
     }
     
     return(
