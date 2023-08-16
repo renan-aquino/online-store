@@ -79,7 +79,7 @@ export function ProductCard(props: ProductCardProps){
     
     return(
         <Card onClick={handleNavigate}>
-            <ProductImage src={props.image} alt='' width={500} height={500}/>
+            <ProductImage src={props.image} alt='' width={500} height={500} priority={true}/>
             <div>
                 <h3>{props.title}</h3>
                 <p>{price}</p>

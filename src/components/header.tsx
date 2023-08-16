@@ -1,6 +1,6 @@
 'use client'
 
-import { InputSearchIcon } from "./search-input/search-input"
+import { InputSearchIcon } from "./search-input"
 import { CartControl } from "./cart-control"
 import { useFilter } from "@/hooks/useFilter"
 import { styled } from "styled-components"

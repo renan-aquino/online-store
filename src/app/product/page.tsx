@@ -7,6 +7,7 @@ import { useContext } from "react"
 import { styled } from "styled-components"
 import Image from 'next/image'
 import { formatPrice } from "../utils/format-price"
+import { useProducts } from "@/hooks/useProducts"
 
 
 const Container = styled.div`
@@ -86,8 +87,19 @@ const ProductInfo = styled.div`
 
 export default function Product({ searchParams }: { searchParams: { id: string }}){
     const { cartItems, setCartItems } = useContext(CartContext)
-    const { data } = useProduct(searchParams.id)
-    const price = formatPrice(data?.price_in_cents)
+    // const { data } = useProduct(searchParams.id)
+
+    const { data } = useProducts()
+
+    let filteredData = data
+
+    filteredData = filteredData?.filter(product => product.id == searchParams.id)
+
+    let filteredDataItem = filteredData?.filter(product => product.id == searchParams.id).at(0)
+
+    const price = formatPrice(filteredDataItem?.price_in_cents)
+
+    // const price = formatPrice(data?.price_in_cents)
 
 
     const handleAddToCart = () => {
@@ -100,7 +112,7 @@ export default function Product({ searchParams }: { searchParams: { id: string }
                 setCartItems(JSON.parse(localStorage.getItem('cart-items')))
 
             } else {
-                let currentProduct = { ...data, quantity: 1}
+                let currentProduct = { ...filteredDataItem, quantity: 1}
                 setCartItems(prev => [...prev, currentProduct])
             }
     
@@ -110,15 +122,15 @@ export default function Product({ searchParams }: { searchParams: { id: string }
         <main>
             <GoBackButton navigate="/"/>
             <Container>
-                    <ProductImage src={data?.image} alt="" width={500} height={500}/>
+                    <ProductImage src={filteredDataItem?.image} alt="" width={500} height={500}/>
                     <div>
                         <ProductInfo>
-                            <span>{data?.category}</span>
-                            <h2>{data?.title}</h2>
+                            <span>{filteredDataItem?.category}</span>
+                            <h2>{filteredDataItem?.title}</h2>
                             <span>{price}</span>
                             <div>
                                 <h3>Descrição</h3>
-                                <p>{data?.description}</p>
+                                <p>{filteredDataItem?.description}</p>
                             </div>
                             <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
                         </ProductInfo>
