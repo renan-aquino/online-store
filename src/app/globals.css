@@ -33,7 +33,7 @@ body {
 main {
   margin-top: 80px;
   padding: 34px 15px;
-  min-height: 100vh - 80px;
+  min-height: calc(100vh - 80px);
   background-color: var(--clr-background);
 }
 
