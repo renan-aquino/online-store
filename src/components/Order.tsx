@@ -57,6 +57,10 @@ const Button = styled.button`
     width: 100%;
     font-weight: 500;
     font-size: 16px;
+
+    &:active {
+        background-color: #006E00;
+    }
 `
 
 interface OrderProps {

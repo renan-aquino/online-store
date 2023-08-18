@@ -89,6 +89,22 @@ const ProductInfo = styled.div`
         text-transform: uppercase;
     }
 `
+const Button = styled.button `
+    margin-top: 32px;
+    background: #115D8C;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    text-transform: uppercase;
+
+    &:active {
+        background-color: #0F4E75;
+    }
+`
+
 
 export default function Product({ searchParams }: { searchParams: { id: string }}){
     const { cartItems, setCartItems } = useContext(CartContext)
@@ -127,7 +143,7 @@ export default function Product({ searchParams }: { searchParams: { id: string }
                                 <h3>Descrição</h3>
                                 <p>{data?.description}</p>
                             </div>
-                            <button onClick={handleAddToCart}>Adicionar ao carrinho</button>
+                            <Button onClick={handleAddToCart}>Adicionar ao carrinho</Button>
                         </ProductInfo>
                     </div>
             </Container>

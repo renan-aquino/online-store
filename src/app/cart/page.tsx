@@ -29,6 +29,7 @@ const FlexContainer = styled.div `
 `
 
 const CartList = styled.div `
+    width: 700px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
