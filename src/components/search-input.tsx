@@ -1,6 +1,7 @@
 import { styled } from "styled-components"
 import { InputHTMLAttributes } from "react"
 import { SearchIcon } from "./icons/search-icon"
+import { useRouter } from "next/navigation"
 
 const SearchInput = styled.input `
     border-radius: 8px;
@@ -25,6 +26,10 @@ const InputContainer = styled.div`
         top: 50%;
         transform: translateY(-50%);
     }
+
+    > div {
+        cursor: pointer;
+    }
 `
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
@@ -33,10 +38,12 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
 }
 
 export function InputSearchIcon(props: InputProps){
+    const router = useRouter()
+
     return(
         <InputContainer>
             <SearchInput onChange={(e) => props.$handleChange(e.target.value)} {...props}/>
-            <SearchIcon/>
+            <div onClick={() => router.push('/')}><SearchIcon/></div>
         </InputContainer>
     )
 }
