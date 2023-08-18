@@ -9,6 +9,7 @@ const HeaderTag = styled.header `
     height: 80px;
     width: 100%;
     position: fixed;
+    top: 0;
     background: white;
     z-index: 2;
 `
