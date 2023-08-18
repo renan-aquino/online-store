@@ -3,7 +3,10 @@ import { styled } from "styled-components"
 const Container = styled.div `
     background-color: white;
     width: 400px;
+    align-self: start;
     padding: 32px;
+    position: sticky;
+    top: 102px;
 
     h3 {
         color: var(--clr-dark-300);
@@ -17,7 +20,7 @@ const Container = styled.div `
 
 const Subtotal = styled.div `
     margin-top: 32px;
-
+    
     div {
         display: flex;
         justify-content: space-between;
@@ -45,9 +48,21 @@ const Divider = styled.div`
     margin-top: 20px;
 `
 
+const Button = styled.button`
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: green;
+    margin-top: 48px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 16px;
+`
+
 interface OrderProps {
     subtotal: string,
-    total: string
+    total: string,
+    handleClick: () => void
 }
 export function Order(props: OrderProps){
     return(
@@ -71,6 +86,8 @@ export function Order(props: OrderProps){
                 <p>Total</p>
                 <p>{props.total}</p>
             </Total>
+
+            <Button onClick={props.handleClick}>Finish purchase</Button>
         </Container>
     )
 }

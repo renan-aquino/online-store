@@ -2,23 +2,28 @@ import { styled } from "styled-components"
 import {ReactNode} from 'react'
 
 const Container = styled.div `
-    display: flex;
+    width: 100px;
+    height: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
     align-items: center;
-    gap: 10px;
 
     button {
-        padding : 2px 8px;
+        width: 32px;
+        height: 32px;
         background-color: black;
         color: white;
         font-size: 24px;
-        border-radius: 10px;
+        line-height: 1.1;
+        border-radius: 5px;
     }
 
     p {
         color: black;
-        margin-top: 0px;
     }
 `
+
 
 interface QuantitySelectorProps {
     quantity: number,
@@ -31,8 +36,8 @@ interface QuantitySelectorProps {
 export function QuantitySelector(props: QuantitySelectorProps){
     return (
         <Container>
-            <button onClick={props.handleDecrease}>+</button>
-            <p>{props.quantity}</p>
+            <button onClick={props.handleDecrease}>-</button>
+            <p> {props.quantity} </p>
             <button onClick={props.handleIncrease}>+</button>
         </Container>
     )

@@ -2,12 +2,13 @@
 
 import { GoBackButton } from "@/components/go-back-button";
 import { CartContext } from "@/contexts/cart-context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { formatPrice } from "../utils/format-price";
 import { CartItemCard } from "@/components/cart-item-card";
 import { Order } from "@/components/Order";
 import { Product, ProductInCart } from "@/types/product";
+import { useRouter } from "next/navigation";
 
 const Container = styled.div `
     margin-top: 24px;
@@ -35,23 +36,23 @@ const CartList = styled.div `
 `
 
 
-
-
 export default function CartPage(){
     const { cartItems, setCartItems } = useContext(CartContext)
+    const router = useRouter()
+    const [called, isCalled] = useState(false)
     
     let totalQuantity = cartItems.reduce((sum, item) => sum += item.quantity, 0)
     let totalAmount = cartItems.reduce((sum, item) => sum += (item.price_in_cents * item.quantity), 0)
     let subtotal = formatPrice(totalAmount)
     let total = formatPrice(totalAmount + 14.90)
 
-    const IncreaseNumber = (currentItem: ProductInCart) => {
+    const increaseNumber = (currentItem: ProductInCart) => {
         currentItem.quantity += 1
         localStorage.setItem('cart-items', JSON.stringify(cartItems))
         setCartItems(JSON.parse(localStorage.getItem('cart-items')))
     }
     
-    const DecreaseNumber = (currentItem: ProductInCart) => {
+    const decreaseNumber = (currentItem: ProductInCart) => {
         if(currentItem.quantity > 1) {
             currentItem.quantity -= 1
             localStorage.setItem('cart-items', JSON.stringify(cartItems))
@@ -59,23 +60,37 @@ export default function CartPage(){
         }
     }
 
+    const finishPurchase = () => {
+        router.push('/thank-you')
+        setCartItems([])
+        isCalled(true)
+    }
+
+
+    useEffect(() => {
+        called && localStorage.setItem('cart-items', JSON.stringify(cartItems))
+
+    }, [called])
+    
+
+
     return (
         <main>
+            
             <GoBackButton navigate="/"/>
             <Container>
-                <h3>Your cart</h3>
+                <h3 onClick={() => console.log(cartItems)}>Your cart</h3>
                 <p><span>&#40;{totalQuantity} items&#41;</span></p>
                 <FlexContainer>  
                     <CartList>
                         {cartItems.map(item =>
-                            <CartItemCard handleIncrease={() => IncreaseNumber(item)} handleDecrease={() => DecreaseNumber(item)} image={item.image} title={item.title} quantity={item.quantity} price={formatPrice(item.quantity * item.price_in_cents)} key={item.id}/>
+                            <CartItemCard handleIncrease={() => increaseNumber(item)} handleDecrease={() => decreaseNumber(item)} image={item.image} title={item.title} quantity={item.quantity} price={formatPrice(item.quantity * item.price_in_cents)} key={item.id}/>
                         )}
                     </CartList>
-                    <Order subtotal={subtotal} total={total}/>
+                    <Order subtotal={subtotal} total={total} handleClick={() => finishPurchase()}/>
                 </FlexContainer>
-
+            
             </Container>
-
         </main>
     )
 }
