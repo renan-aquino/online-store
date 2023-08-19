@@ -1,5 +1,4 @@
 import { styled } from "styled-components"
-import {ReactNode} from 'react'
 
 const Container = styled.div `
     width: 100px;

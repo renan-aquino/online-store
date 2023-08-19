@@ -67,13 +67,6 @@ const Card = styled.div`
 
 `
 
-// const ProductImage = styled(Image) `
-//     width: 100%;
-//     height: auto;
-//     aspect-ratio: 1;
-//     object-fit: cover;
-// `
-
 export function ProductCard(props: ProductCardProps){
 
     const price = formatPrice(props.price)

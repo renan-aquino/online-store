@@ -45,7 +45,6 @@ export function CartControl(){
     const [clicked, setClicked] = useState(false)
     const { cartItems } = useContext(CartContext)
     let totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0)
-    console.log(totalQuantity)
 
     useEffect(() => {
         totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0) 

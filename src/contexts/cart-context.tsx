@@ -13,7 +13,6 @@ interface ProviderProps {
 
 export function CartContextProvider({children} : ProviderProps) {
     const ls = typeof window !== "undefined" ? window.localStorage : null;
-    const defaultProducts = ls ? JSON.parse(localStorage.getItem('cart-items')) : [];
     const [cartItems, setCartItems] = useState<ProductInCart[]>([]);
 
     useEffect(()=> {
