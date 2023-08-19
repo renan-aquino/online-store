@@ -10,22 +10,27 @@ import { formatPrice } from "../utils/format-price"
 
 
 const Container = styled.div`
-    display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 32px;
+    // display: grid;
+    // grid-template-columns: 1.5fr 1fr;
+    // gap: 32px;
     margin-top: 24px;
-    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+
     
     img {
-        width: 100%;
-        height: auto;
+        width: 700px;
+        // height: calc(100vh - 24px - 80px - 34px - 24px);
+        aspect-ratio: 1;
+    }
+
+    > div {
+        max-width: 600px;
     }
 `
-
-// const ProductImage = styled(Image)`
-//     width: 100%;
-//     height: auto;
-// `
 
 const ProductInfo = styled.div`
     display: flex;
@@ -76,21 +81,9 @@ const ProductInfo = styled.div`
             font-size: 16px;
         }
     }
-
-    button {
-        margin-top: 32px;
-        background: #115D8C;
-        border-radius: 4px;
-        color: white;
-        padding: 10px 10px;
-        text-align: center;
-        font-weight: 500;
-        font-size: 16px;
-        text-transform: uppercase;
-    }
 `
 const Button = styled.button `
-    margin-top: 32px;
+    margin-top: 48px;
     background: #115D8C;
     border-radius: 4px;
     color: white;
@@ -116,8 +109,6 @@ export default function Product({ searchParams }: { searchParams: { id: string }
     const handleAddToCart = () => {
 
             let existingProductIndex = cartItems.findIndex((item: { id: string; }) => item.id === searchParams.id);
-            let currentItem = cartItems.find((item: { id: string; }) => item.id === searchParams.id);
-
 
             if(existingProductIndex != -1){
                 cartItems[existingProductIndex].quantity += 1;
@@ -137,9 +128,7 @@ export default function Product({ searchParams }: { searchParams: { id: string }
     return(
         <main>
             <GoBackButton navigate="/"/>
-            <Container>
-                    
-                    <img src={data?.image}/>
+            <Container>                    
                     <div>
                         <ProductInfo>
                             <span>{data?.category}</span>
@@ -152,6 +141,8 @@ export default function Product({ searchParams }: { searchParams: { id: string }
                             <Button ref={btnRef} onClick={handleAddToCart}>Adicionar ao carrinho</Button>
                         </ProductInfo>
                     </div>
+                    <img src={data?.image}/>
+
             </Container>
         </main>
 
