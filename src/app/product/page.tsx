@@ -3,7 +3,7 @@
 import { GoBackButton } from "@/components/go-back-button"
 import { CartContext } from "@/contexts/cart-context"
 import { useProduct } from "@/hooks/useProduct"
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import { styled } from "styled-components"
 // import Image from 'next/image'
 import { formatPrice } from "../utils/format-price"
@@ -100,7 +100,7 @@ const Button = styled.button `
     font-size: 16px;
     text-transform: uppercase;
 
-    &:active {
+    &:hover {
         background-color: #0F4E75;
     }
 `
@@ -109,12 +109,15 @@ const Button = styled.button `
 export default function Product({ searchParams }: { searchParams: { id: string }}){
     const { cartItems, setCartItems } = useContext(CartContext)
     const { data } = useProduct(searchParams.id)
+    const btnRef = useRef(null)
     const price = formatPrice(data?.price_in_cents)
 
-
+    
     const handleAddToCart = () => {
 
             let existingProductIndex = cartItems.findIndex((item: { id: string; }) => item.id === searchParams.id);
+            let currentItem = cartItems.find((item: { id: string; }) => item.id === searchParams.id);
+
 
             if(existingProductIndex != -1){
                 cartItems[existingProductIndex].quantity += 1;
@@ -125,6 +128,9 @@ export default function Product({ searchParams }: { searchParams: { id: string }
                 let currentProduct = { ...data, quantity: 1}
                 setCartItems(prev => [...prev, currentProduct])
             }
+
+            btnRef.current.disabled = true
+            btnRef.current.style.backgroundColor = '#70A6C8'
     
     }
 
@@ -143,7 +149,7 @@ export default function Product({ searchParams }: { searchParams: { id: string }
                                 <h3>Descrição</h3>
                                 <p>{data?.description}</p>
                             </div>
-                            <Button onClick={handleAddToCart}>Adicionar ao carrinho</Button>
+                            <Button ref={btnRef} onClick={handleAddToCart}>Adicionar ao carrinho</Button>
                         </ProductInfo>
                     </div>
             </Container>
