@@ -122,6 +122,7 @@ export default function Product({ searchParams }: { searchParams: { id: string }
 
             btnRef.current.disabled = true
             btnRef.current.style.backgroundColor = '#70A6C8'
+            btnRef.current.innerHTML = "ITEM ADICIONADO"
     
     }
 
