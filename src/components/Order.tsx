@@ -16,6 +16,11 @@ const Container = styled.div `
     p {
         font-weight: 500;
     }
+
+    @media (max-width: 1155px){
+        align-self: center;
+        width: 100%;
+    }
 `
 
 const Subtotal = styled.div `

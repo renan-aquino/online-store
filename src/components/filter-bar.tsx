@@ -9,6 +9,11 @@ const FilterBarContainer = styled.div `
     width: 100%;
     align-items: center;
     justify-content: space-between;
+
+    @media(max-width: 509px){
+        flex-direction: column;
+        gap: 20px
+    }
  
 `
 

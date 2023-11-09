@@ -11,14 +11,19 @@ import { Product, ProductInCart } from "@/types/product";
 import { useRouter } from "next/navigation";
 
 const Container = styled.div `
+    @media(min-width: 769px){
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
     margin-top: 24px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  
 
     > p {
         margin-top: 12px;
     }
+
+  
 `
 
 const FlexContainer = styled.div `
@@ -26,10 +31,14 @@ const FlexContainer = styled.div `
     display: flex;
     justify-content: center;
     gap: 40px;
+
+    @media (max-width: 1155px){
+        flex-direction: column;
+    }
 `
 
 const CartList = styled.div `
-    width: 700px;
+    // width: 700px;
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;

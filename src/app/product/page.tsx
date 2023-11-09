@@ -30,6 +30,20 @@ const Container = styled.div`
     > div {
         max-width: 600px;
     }
+
+    @media(max-width: 768px){
+        flex-direction: column;
+
+        div {
+            order: 2;
+        }
+
+        img {
+            align-self: center;
+            order: 1;
+            width: 100%;
+        }
+    }
 `
 
 const ProductInfo = styled.div`
@@ -80,11 +94,18 @@ const ProductInfo = styled.div`
             margin-top: 20px;
             font-size: 16px;
         }
+
+    }
+
+    @media(max-width: 768px){
+        h2 {
+            font-size: 20px
+        }
     }
 `
 const Button = styled.button `
     margin-top: 48px;
-    background: #115D8C;
+    background: green;
     border-radius: 4px;
     color: white;
     padding: 10px 10px;
@@ -95,6 +116,10 @@ const Button = styled.button `
 
     &:hover {
         background-color: #0F4E75;
+    }
+
+    @media (max-width: 768px){
+        margin-top: 20px;
     }
 `
 
@@ -132,7 +157,6 @@ export default function Product({ searchParams }: { searchParams: { id: string }
             <Container>                    
                     <div>
                         <ProductInfo>
-                            <span>{data?.category}</span>
                             <h2>{data?.title}</h2>
                             <span>{price}</span>
                             <div>

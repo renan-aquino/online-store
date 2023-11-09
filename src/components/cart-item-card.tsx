@@ -16,6 +16,16 @@ const Container = styled.li `
        height: 200px;
        object-fit: cover;
     }
+
+    @media (max-width: 715px){
+        width: clamp(10px, 90vw, 700px);
+        height: auto;
+        margin-inline: auto;
+
+        img {
+            display: none;
+        }
+    }
 `
 
 const ItemInfo = styled.div `
@@ -30,13 +40,20 @@ const ItemInfo = styled.div `
     > h3 {
         color: var(--clr-dark-300);
         font-weight: 400;
-    }
 
+    }
     
     > div {
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    @media (max-width: 768px){     
+        > h3 {
+            font-size: 16px;
+    
+        }
     }
     
 `

@@ -11,7 +11,8 @@ interface FilterItemProps{
 const FilterList = styled.ul`
     display: flex;
     align-items: center;
-    gap: 40px;
+    // gap: 40px;
+    gap: clamp( 15px, 7vw, 40px);
 `
 
 const FilterItem = styled.li<FilterItemProps>`

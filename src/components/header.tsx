@@ -24,7 +24,15 @@ const Container = styled.div `
         display: flex;
         align-items: center;
         gap: 24px;
+
+        > div:first-child {
+            @media(max-width: 611px){
+                display:none;
+            }
+        }
     }
+
+    
 `
 const Logo = styled.a `
     font-size: 32px;
@@ -34,6 +42,10 @@ const Logo = styled.a `
     span {
         color: var(--clr-accent);
         font-weight: 500;
+    }
+
+    @media(max-width: 685px){
+        font-size: 24px;
     }
 `
 
@@ -47,7 +59,8 @@ export function Header(){
                     <InputSearchIcon
                             value={search}
                             $handleChange={setSearch}
-                            placeholder="O que você precisa?"/>
+                            placeholder="O que você precisa?">
+                    </InputSearchIcon>
                     <CartControl/>
                 </div>
             </Container>

@@ -12,6 +12,18 @@ const Container = styled.div `
     gap: 30px;
     max-width: 100%;
     margin-top: 32px;
+
+    @media (max-width: 917px) {
+        grid-template-columns: repeat(3, 1fr);  
+    }
+
+    @media (max-width: 685px) {
+        grid-template-columns: repeat(2, 1fr);  
+    }
+
+    @media (max-width: 455px) {
+        grid-template-columns: repeat(1, 1fr);  
+    }
 `
 
 
