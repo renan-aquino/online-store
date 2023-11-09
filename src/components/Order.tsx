@@ -1,4 +1,6 @@
 import { styled } from "styled-components"
+import { useContext } from 'react'
+import { CartContext } from "@/contexts/cart-context"
 
 const Container = styled.div `
     background-color: white;
@@ -74,29 +76,36 @@ interface OrderProps {
     handleClick: () => void
 }
 export function Order(props: OrderProps){
+    const { cartItems } = useContext(CartContext)
+
     return(
-        <Container>
-            <h3>Order Information</h3>
-
-            <Subtotal>
-                <div>
-                    <p>Subtotal</p>
-                    <p>{props.subtotal}</p>
-                </div>
-                <div>
-                    <p>Shipping fee</p>
-                    <p>R$ 14,90</p>
-                </div>
-            </Subtotal>
-
-            <Divider/>
-
-            <Total>
-                <p>Total</p>
-                <p>{props.total}</p>
-            </Total>
-
-            <Button onClick={props.handleClick}>Finish purchase</Button>
-        </Container>
+        <>  
+            {cartItems.length > 0 && 
+                <Container>
+                
+                    <h3>Order Information</h3>
+                
+                    <Subtotal>
+                        <div>
+                            <p>Subtotal</p>
+                            <p>{props.subtotal}</p>
+                        </div>
+                        <div>
+                            <p>Shipping fee</p>
+                            <p>R$ 14,90</p>
+                        </div>
+                    </Subtotal>
+                
+                    <Divider/>
+                
+                    <Total>
+                        <p>Total</p>
+                        <p>{props.total}</p>
+                    </Total>
+                
+                    <Button onClick={props.handleClick}>Finish purchase</Button>
+                </Container>
+            }
+        </>
     )
 }

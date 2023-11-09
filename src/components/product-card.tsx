@@ -14,7 +14,7 @@ interface ProductCardProps{
 
 
 
-const Card = styled.div`
+const Card = styled.a`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -74,10 +74,11 @@ export function ProductCard(props: ProductCardProps){
 
     const handleNavigate = () => {
         router.push("/product?id=" + props.id)
+        // location.href='/product?id=' + props.id
     }
     
     return(
-        <Card onClick={handleNavigate}>
+        <Card href={'product?id=' + props.id} >
             <img src={props.image}/>
             <div>
                 <h3>{props.title}</h3>

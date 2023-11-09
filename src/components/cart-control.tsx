@@ -8,7 +8,7 @@ import { styled } from 'styled-components'
 import { spawn } from 'child_process'
 
 
-const Container = styled.div `
+const Container = styled.a `
     position: relative;
     cursor: pointer;
 `
@@ -66,7 +66,7 @@ export function CartControl(){
     }
 
     return(
-        <Container onClick={handleNavigate}>
+        <Container href={'/cart'} >
             <CartIcon/>
             {totalQuantity > 0 && <CartCount>{totalQuantity}</CartCount>}
             {clicked && <Message>No items in your cart.</Message>}
