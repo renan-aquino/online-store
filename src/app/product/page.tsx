@@ -147,7 +147,7 @@ export default function Product({ searchParams }: { searchParams: { id: string }
 
             btnRef.current.disabled = true
             btnRef.current.style.backgroundColor = '#70A6C8'
-            btnRef.current.innerHTML = "ITEM ADICIONADO"
+            btnRef.current.innerHTML = "ITEM ADDED TO CART"
     
     }
 
@@ -160,10 +160,10 @@ export default function Product({ searchParams }: { searchParams: { id: string }
                             <h2>{data?.title}</h2>
                             <span>{price}</span>
                             <div>
-                                <h3>Descrição</h3>
+                                <h3>Description</h3>
                                 <p>{data?.description}</p>
                             </div>
-                            <Button ref={btnRef} onClick={handleAddToCart}>Adicionar ao carrinho</Button>
+                            <Button ref={btnRef} onClick={handleAddToCart}>Add to cart</Button>
                         </ProductInfo>
                     </div>
                     <img src={data?.image}/>

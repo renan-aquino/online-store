@@ -59,7 +59,7 @@ export function Header(){
                     <InputSearchIcon
                             value={search}
                             $handleChange={setSearch}
-                            placeholder="O que você precisa?">
+                            placeholder="What are you looking for?">
                     </InputSearchIcon>
                     <CartControl/>
                 </div>
