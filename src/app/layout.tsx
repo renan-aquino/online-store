@@ -3,6 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 // import { Inter } from 'next/font/google'
 import { DefaultProviders } from '@/components/default-providers'
+import { Footer } from '@/components/footer'
 
 // const inter = Inter({ 
 //   weight: ['300', '400', '500', '600'],
@@ -25,6 +26,7 @@ export default function RootLayout({
         <DefaultProviders>
           <Header/>
           {children}
+          <Footer/>
         </DefaultProviders>
 
         </body>
