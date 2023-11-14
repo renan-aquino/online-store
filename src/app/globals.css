@@ -34,6 +34,7 @@ body {
 
 main {
   margin-top: 80px;
+  min-height: 100vh;
   padding: 34px 15px;
 }
 
