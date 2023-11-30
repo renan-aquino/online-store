@@ -11,19 +11,16 @@ import { Product, ProductInCart } from "@/types/product";
 import { useRouter } from "next/navigation";
 
 const Container = styled.div `
-    @media(min-width: 769px){
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    margin-top: 24px;
-  
-
+    margin-top: 92px;
     > p {
         margin-top: 12px;
     }
+`
 
-  
+const ItemCount = styled.div `
+    position: absolute;
+    top: -68px;
+    left:
 `
 
 const FlexContainer = styled.div `
@@ -38,10 +35,14 @@ const FlexContainer = styled.div `
 `
 
 const CartList = styled.div `
-    // width: 700px;
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     gap: 32px;
+
+    @media(max-width: 1155px) {
+        margin-inline: auto;
+    }
 
 `
 
@@ -89,10 +90,13 @@ export default function CartPage(){
             
             <GoBackButton navigate="/"/>
             <Container>
-                <h3 onClick={() => console.log(cartItems)}>Your cart</h3>
-                <p><span>&#40;{totalQuantity} items&#41;</span></p>
+               
                 <FlexContainer>  
                     <CartList>
+                        <ItemCount>
+                            <h3 onClick={() => console.log(cartItems)}>Your cart</h3>
+                            <p><span>&#40;{totalQuantity} items&#41;</span></p>
+                        </ItemCount>
                         {cartItems.map(item =>
                             <CartItemCard handleIncrease={() => increaseNumber(item)} handleDecrease={() => decreaseNumber(item)} image={item.image} title={item.title} quantity={item.quantity} price={formatPrice(item.quantity * item.price_in_cents)} key={item.id}/>
                         )}
