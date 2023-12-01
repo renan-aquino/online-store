@@ -35,6 +35,7 @@ const FlexContainer = styled.div `
 `
 
 const CartList = styled.div `
+    min-width: 85px; 
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
@@ -71,6 +72,14 @@ export default function CartPage(){
         }
     }
 
+    const deleteItem = (currentItem: ProductInCart) => {
+        console.log('delete')
+        let itemIndex = cartItems.findIndex((item: { id: string; }) => item.id === currentItem.id);
+        cartItems.splice(itemIndex, 1);
+        localStorage.setItem('cart-items', JSON.stringify(cartItems))
+        setCartItems(JSON.parse(localStorage.getItem('cart-items')))
+    }
+
     const finishPurchase = () => {
         router.push('/thank-you')
         setCartItems([])
@@ -98,7 +107,7 @@ export default function CartPage(){
                             <p><span>&#40;{totalQuantity} items&#41;</span></p>
                         </ItemCount>
                         {cartItems.map(item =>
-                            <CartItemCard handleIncrease={() => increaseNumber(item)} handleDecrease={() => decreaseNumber(item)} image={item.image} title={item.title} quantity={item.quantity} price={formatPrice(item.quantity * item.price_in_cents)} key={item.id}/>
+                            <CartItemCard handleIncrease={() => increaseNumber(item)} handleDecrease={() => decreaseNumber(item)} handleDelete={() => deleteItem(item)} image={item.image} title={item.title} quantity={item.quantity} price={formatPrice(item.quantity * item.price_in_cents)} key={item.id}/>
                         )}
                     </CartList>
                     <Order subtotal={subtotal} total={total} handleClick={() => finishPurchase()}/>

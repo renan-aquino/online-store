@@ -70,6 +70,7 @@ interface CartItemProps{
     price: string,
     handleIncrease: () => void,
     handleDecrease: () => void
+    handleDelete: () => void
 }
 
 export function CartItemCard(props: CartItemProps){
@@ -79,7 +80,7 @@ export function CartItemCard(props: CartItemProps){
             <ItemInfo>
                 <h3>{props.title}</h3>
                 <div>
-                    <QuantitySelector quantity={props.quantity} handleIncrease={props.handleIncrease} handleDecrease={props.handleDecrease}/>
+                    <QuantitySelector quantity={props.quantity} handleIncrease={props.handleIncrease} handleDecrease={props.handleDecrease} handleDelete={props.handleDelete}/>
                     <Price>{props.price}</Price>
                 </div>
             </ItemInfo>
