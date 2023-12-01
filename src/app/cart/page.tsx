@@ -56,7 +56,7 @@ export default function CartPage(){
     let totalQuantity = cartItems.reduce((sum, item) => sum += item.quantity, 0)
     let totalAmount = cartItems.reduce((sum, item) => sum += (item.price_in_cents * item.quantity), 0)
     let subtotal = formatPrice(totalAmount)
-    let total = formatPrice(totalAmount + 14.90)
+    let total = formatPrice(totalAmount + 1490)
 
     const increaseNumber = (currentItem: ProductInCart) => {
         currentItem.quantity += 1
